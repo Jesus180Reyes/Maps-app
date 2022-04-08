@@ -36,6 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_bloc: ^8.0.1
   bloc: ^8.0.3
+  equatable: ^2.0.3
+  permission_handler: ^9.0.2
+  
+  
 
 dev_dependencies:
   flutter_test:
