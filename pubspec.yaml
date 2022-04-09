@@ -37,7 +37,9 @@ dependencies:
   flutter_bloc: ^8.0.1
   bloc: ^8.0.3
   equatable: ^2.0.3
-  permission_handler: ^9.0.2
+  geolocator: ^8.0.5
+  permission_handler: ^9.0.0
+  # permission_handler: ^9.0.2
   
   
 
