@@ -51,6 +51,7 @@ class _MapPageState extends State<MapPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: const [
           BtnLocation(),
         ],

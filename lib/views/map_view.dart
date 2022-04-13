@@ -26,6 +26,7 @@ class MapView extends StatelessWidget {
         initialCameraPosition: initialCameraPosition,
         compassEnabled: true,
         myLocationButtonEnabled: false,
+        zoomControlsEnabled: false,
         onMapCreated: (controller) =>
             mapbloc.add(OnMapInitializeEvent(controller)),
       ),
