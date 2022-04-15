@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_app/blocs/bloc.dart';
 import 'package:map_app/views/views.dart';
 import 'package:map_app/widgets/btn_location.dart';
+import 'package:map_app/widgets/btn_toggle_user_route.dart';
+import 'package:map_app/widgets/widgets.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -31,21 +34,30 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<LocationBloc, LocationState>(
-        builder: (context, state) {
-          if (state.lastKnowLocation == null) {
+        builder: (context, locationState) {
+          if (locationState.lastKnowLocation == null) {
             return const Center(
               child: Text('Espere porfavor...'),
             );
           }
 
-          return SingleChildScrollView(
-            child: Stack(
-              children: [
-                MapView(
-                  initialPosition: state.lastKnowLocation!,
+          return BlocBuilder<MapBloc, MapState>(
+            builder: (context, mapState) {
+              Map<String, Polyline> polylines = Map.from(mapState.polyLines);
+              if (!mapState.showMyRoute) {
+                polylines.removeWhere((key, value) => key == 'myRoute');
+              }
+              return SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    MapView(
+                      initialPosition: locationState.lastKnowLocation!,
+                      polylines: mapState.polyLines.values.toSet(),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            },
           );
         },
       ),
@@ -53,7 +65,9 @@ class _MapPageState extends State<MapPage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: const [
+          BtnToggleUserRoute(),
           BtnLocation(),
+          BtnFollowUser(),
         ],
       ),
     );
