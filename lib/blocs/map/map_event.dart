@@ -24,3 +24,9 @@ class UpdateUserPolylinesEvent extends MapEvent {
 
   const UpdateUserPolylinesEvent(this.userLocation);
 }
+
+class DisplayPolyLineId extends MapEvent {
+  final Map<String, Polyline> polylines;
+
+  const DisplayPolyLineId(this.polylines);
+}

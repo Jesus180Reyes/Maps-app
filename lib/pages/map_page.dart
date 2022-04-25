@@ -54,6 +54,8 @@ class _MapPageState extends State<MapPage> {
                       initialPosition: locationState.lastKnowLocation!,
                       polylines: mapState.polyLines.values.toSet(),
                     ),
+                    const SearchBar(),
+                    const ManualMarker(),
                   ],
                 ),
               );
